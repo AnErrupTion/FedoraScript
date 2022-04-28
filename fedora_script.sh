@@ -20,10 +20,10 @@ function executeScript()
 	grubby --update-kernel=ALL --args="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1"
 
 	# Add RPM fusion (both free and non-free)
-	dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 	# Enable COPR repo for PolyMC
-	dnf copr enable sentry/polymc
+	dnf copr enable sentry/polymc -y
 
 	# Install apps and NVIDIA drivers from repos
 	dnf install dolphin-emu gimp gamehub legendary solaar thunderbird steam akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda nvidia-settings polymc nheko -y

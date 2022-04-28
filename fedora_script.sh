@@ -2,6 +2,7 @@
 export LC_ALL=C
 
 jetbrainsToolboxVersion="1.23.11849"
+nvidiaPackages="akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda"
 
 function copyDir()
 {
@@ -12,6 +13,19 @@ function copyDir()
 
 function executeScript()
 {
+	echo "What version of the NVIDIA drivers to install?"
+	echo "1. 340"
+	echo "2. 390"
+	echo "3. Latest"
+
+	read nvidiaVersion
+
+	if [ ${nvidiaVersion} == "1" ]; then
+		nvidiaPackages="akmod-nvidia-340xx xorg-x11-drv-nvidia-340xx xorg-x11-drv-nvidia-340xx-cuda"
+	elif [ ${nvidiaVersion} == "2" ]; then
+		nvidiaPackages="akmod-nvidia-390xx xorg-x11-drv-nvidia-390xx xorg-x11-drv-nvidia-390xx-cuda"
+	fi
+
 	# Update and upgrade system if needed
 	dnf update -y
 	dnf upgrade -y
@@ -26,7 +40,7 @@ function executeScript()
 	dnf copr enable sentry/polymc -y
 
 	# Install apps and NVIDIA drivers from repos
-	dnf install dolphin-emu gimp gamehub legendary solaar thunderbird steam akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda nvidia-settings polymc nheko -y
+	dnf install dolphin-emu gimp gamehub legendary solaar thunderbird steam ${nvidiaPackages} nvidia-settings polymc nheko -y
 
 	# Install JetBrains Toolbox
 	# This is mostly taken from https://github.com/nagygergo/jetbrains-toolbox-install

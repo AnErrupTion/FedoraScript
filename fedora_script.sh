@@ -3,9 +3,6 @@ export LC_ALL=C
 
 jetbrainsToolboxVersion="1.23.11849"
 
-# Go as root
-sudo su
-
 # Update and upgrade system if needed
 dnf update -y
 dnf upgrade -y
@@ -44,9 +41,6 @@ copy "RiderProjects" "~/RiderProjects"
 copy "IdeaProjects" "~/IdeaProjects"
 copy "Wii Games" "~/Documents/Wii Games"
 copy "PolyMC" "~/.local/share/PolyMC"
-
-# Exit su
-exit
 
 function copy()
 {
